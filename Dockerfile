@@ -1,4 +1,5 @@
-FROM alpine:latest as builder
+FROM amd64/alpine as builder
+
 WORKDIR /build
 
 # Install build dependencies
@@ -12,7 +13,7 @@ RUN cd libowfat && make
 RUN git clone git://erdgeist.org/opentracker
 RUN cd opentracker && make
 
-FROM alpine:latest
+FROM amd64/alpine
 
 COPY --from=builder /build/opentracker/opentracker /bin/
 RUN apk add --no-cache curl
