@@ -1,4 +1,5 @@
-FROM amd64/alpine as builder
+FROM arm64v8/alpine as builder
+COPY qemu-arm-static /usr/bin/
 WORKDIR /build
 
 # Install build dependencies
@@ -12,7 +13,8 @@ RUN cd libowfat && make
 RUN git clone git://erdgeist.org/opentracker
 RUN cd opentracker && make
 
-FROM amd64/alpine
+FROM arm64v8/alpine
+COPY qemu-arm-static /usr/bin/
 
 COPY --from=builder /build/opentracker/opentracker /bin/
 RUN apk add --no-cache curl
