@@ -2,10 +2,10 @@ FROM alpine:latest as builder
 WORKDIR /build
 
 # Install build dependencies
-RUN apk add --no-cache alpine-sdk git cvs zlib-dev
+RUN apk add --no-cache alpine-sdk git zlib-dev
 
 # Pull and install libowfat
-RUN cvs -d :pserver:cvs@cvs.fefe.de:/cvs -z9 co libowfat
+RUN git clone https://github.com/masroore/libowfat.git
 RUN cd libowfat && make
 
 # Clone and install opentracker
