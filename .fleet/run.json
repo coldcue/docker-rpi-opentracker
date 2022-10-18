@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "type": "docker-build",
+            "name": "docker build",
+            "file": "Dockerfile",
+            "buildOptions": "-t andrasszell/rpi-opentracker:latest",
+        },
+        {
+            "type": "command",
+            "name": "docker push",
+            "program": "docker",
+            "args": ["push", "andrasszell/rpi-opentracker:latest"],
+        },
+
+    ]
+}
